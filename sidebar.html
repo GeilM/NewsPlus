@@ -1,0 +1,8 @@
+<div class="col-md-2 sidebar">
+    <ul class="nav nav-sidebar">
+        <li><a href={% url 'home' %}>随便看看<span class="sr-only"></span></a></li>
+        {% for cate in category %}
+            <li><a href={% url 'category' Category_name=cate.name %}>{{ cate.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>

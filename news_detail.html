@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'sidebar.html' %}
+    <div class="col-md-12">
+        <br>
+        <div class=" col-md-offset-2 col-md-9">
+            <h4 style="text-align: center">{{ article.title }}</h4>
+            <p style="font-size: large">分类:<a href="">{{ cat.name }}</a></p>
+            <p style="font-size: large"><b>关键词</b>:{{ article.keywords }}</p>
+            <hr>
+            <div>
+                {% include div %}
+            </div>
+            <hr>
+            <div class="col-md-12">
+                <div class="col-md-1">
+                    <form method="get" action={% url 'setrate' %}>
+                        <input type="hidden" name="article" value={{ article.article_id }}>
+                        <button class="btn btn-primary" type="submit">赞</button>
+                    </form>
+                </div>
+                <div class="col-md-1 col-md-offset-1">
+                    <form method="post" action={% url 'setrate' %}>
+                        {% csrf_token %}
+                        <input type="hidden" name="article" value={{ article.article_id }}>
+                        <button class="btn btn-primary" type="submit">不感兴趣</button>
+                    </form>
+                </div>
+
+            </div>
+            {#            <from action={% url "setrate" %} role="set" method="post">#}
+            {#                <input type="hidden" name="article" value={{ article.article_id }}>#}
+            {#                <button class="btn btn-primary" type="submit">不感兴趣</button>#}
+            {#            </from>#}
+        </div>
+    </div>
+{% endblock %}
